@@ -12,30 +12,36 @@ async function fetchCharacter() {
 
 async function getCharacter() {
     let response = []
+    let cardArray = []
+
     if (response.length === 0) {
         response = await fetchCharacter()
     }
-    cardArray = []
-    response.forEach(character => {
-        let col = document.createElement('div') 
+response.forEach(character => {
+        let col = document.createElement('div')
         col.classList.add('col', 's12', 'm6', 'l4')
-
-        let card = document.createElement('div')
-        card.classList.add('card')
-        card.innerHTML = `
-        <div class="card-image">
-          <img src=${character.img}>
-          <span class="card-title">${character.name}</span>
-        </div>
-        <div class="card-content">
-          <p>Nick Name: ${character.nickname}</p>
-          <p>Actor: ${character.portrayed}</p>
-        </div>
-        <div class="card-action">
-          <a href="#" class="red-text">More Info</a>
+        col.innerHTML = `
+        <div class="card small">
+          <div class="card-image waves-effect waves-block waves-light">
+            <img src=${character.img}>
+          </div>
+          <div class="card-content">
+            <span class="card-title activator grey-text text-darken-4">${character.name}<i class="material-icons right">more_vert</i></span>
+            <p><a href="#" class="red-text">More Info</a></p>
+          </div>
+          <div class="card-reveal">
+            <span class="card-title grey-text text-darken-4">${character.name}<i class="material-icons right activator">close</i></span>
+            <p>Nick Name: "${character.nickname}".</p>
+            <p>Ocupation: ${character.occupation.join(', ')}.</p>
+            <p>State: ${character.status}.</p>
+            <p>Seasons: ${character.appearance.join(', ')}.</p>
+            <p>Actor: ${character.portrayed}.</p>
+    
+          </div>
         </div>
         `
-        col.append(card)
-        cardContainer.append(col)
-    });
+        cardArray.push(col)
+      });
+    
+    cardContainer.append(...cardArray)
 }
