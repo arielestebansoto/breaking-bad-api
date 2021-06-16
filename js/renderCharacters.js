@@ -27,7 +27,8 @@ function renderCharacters(characters) {
       cardArray.push(col)
     });
   
-  cardContainer.append(...cardArray)
-  }
+    app.innerHTML = ``
+    app.append(...cardArray)
+}
 
 export default renderCharacters
