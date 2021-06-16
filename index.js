@@ -1,47 +1,7 @@
+import getCharacters from "./js/getCharacters.js"
+import searchSubmit  from "./js/searchCharacters.js"
+import renderCharacters from "./js/renderCharacters.js"
+
 const cardContainer = document.querySelector('#cardContainer')
 const buttonGetCharacters = document.querySelector('#buttonGetCharacter')
-buttonGetCharacters.addEventListener('click', getCharacter)
-
-const URL_API = "https://www.breakingbadapi.com/api/"
-
-async function fetchCharacter() {
-    const response = await fetch(`${URL_API}characters`)
-    const data = await response.json()
-    return data
-}
-
-async function getCharacter() {
-    let response = []
-    let cardArray = []
-
-    if (response.length === 0) {
-        response = await fetchCharacter()
-    }
-response.forEach(character => {
-        let col = document.createElement('div')
-        col.classList.add('col', 's12', 'm6', 'l4')
-        col.innerHTML = `
-        <div class="card small">
-          <div class="card-image waves-effect waves-block waves-light">
-            <img src=${character.img}>
-          </div>
-          <div class="card-content">
-            <span class="card-title activator grey-text text-darken-4">${character.name}<i class="material-icons right">more_vert</i></span>
-            <p><a href="#" class="red-text">More Info</a></p>
-          </div>
-          <div class="card-reveal">
-            <span class="card-title grey-text text-darken-4">${character.name}<i class="material-icons right activator">close</i></span>
-            <p>Nick Name: "${character.nickname}".</p>
-            <p>Ocupation: ${character.occupation.join(', ')}.</p>
-            <p>State: ${character.status}.</p>
-            <p>Seasons: ${character.appearance.join(', ')}.</p>
-            <p>Actor: ${character.portrayed}.</p>
-    
-          </div>
-        </div>
-        `
-        cardArray.push(col)
-      });
-    
-    cardContainer.append(...cardArray)
-}
+buttonGetCharacters.addEventListener('click', getCharacters)
