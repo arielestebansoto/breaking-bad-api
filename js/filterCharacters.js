@@ -8,6 +8,7 @@ async function filterCharacters (input) {
     try {
         const inputValue  = input.target.value.toLowerCase()
         const data = await fetchCharacters()
+
         const filterCharacter = data.filter(characters => {
             return (
                 characters.name.toLowerCase().includes(inputValue)
