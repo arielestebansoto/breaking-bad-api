@@ -1,11 +1,10 @@
 function renderCharacters(characters) {
     let cardArray = []
     characters.forEach(character => {
-      let col = document.createElement('div')
-      col.classList.add('col', 's12', 'm6', 'l4')
+      let card = document.createElement('div')
+      card.classList.add('card', 'small')
   
-      col.innerHTML = `
-      <div class="card small">
+      card.innerHTML = `
         <div class="card-image waves-effect waves-block waves-light">
           <img src=${character.img}>
           <span class="card-title activator white-text text-darken-4">${character.name}<i class="material-icons right">more_vert</i></span>
@@ -19,9 +18,8 @@ function renderCharacters(characters) {
           <p>Actor: ${character.portrayed}.</p>
   
         </div>
-      </div>
       `
-      cardArray.push(col)
+      cardArray.push(card)
     });
   
     app.innerHTML = ``
