@@ -4,13 +4,14 @@ import filterCharacters from "./js/filterCharacters.js"
 
 const app = document.querySelector('#app')
 
-async function printCharacters() {
+async function getCharacters() {
     try {
-        let data = await fetchCharacters()
+        const data = await fetchCharacters()
         await renderCharacters(data)
+        return data
     } catch (error) {
         const e = new Error(error)
         console.error(e.message)
     }
 }
-printCharacters()
+getCharacters()
