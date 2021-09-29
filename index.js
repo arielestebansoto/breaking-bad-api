@@ -1,25 +1,20 @@
-import { CharactersContainer } from './src/components/CharactersContainer.js'
+import { SearchBar } from './src/components/SearchBar.js'
+import { getCharacters } from './src/utils/getCharacters.js'
+import { renderCharacters } from './src/utils/renderCharacters.js'
+import { PageError } from './src/components/PageError.js'
+import { Loader } from './src/components/Loader.js'
 
-CharactersContainer()
+document.addEventListener('DOMContentLoaded', pageLoaded)
 
-// import { fetchCharacters } from "./js/fetchCharacters.js"
-// import renderCharacters from "./js/renderCharacters.js"
-// // import filterCharacters from "./js/filterCharacters.js"
-
-
-
-// // fetch
-
-// // render
-
-// async function getCharacters() {
-//     try {
-//         const data = await fetchCharacters()
-//         await renderCharacters(data)
-//         return data
-//     } catch (error) {
-//         const e = new Error(error)
-//         console.error(e.message)
-//     }
-// }
-// getCharacters()
+async function pageLoaded() {
+    try {
+        Loader()
+        const data = await getCharacters()
+        renderCharacters(data)
+        SearchBar(data)
+    } catch (error) {
+        const newError = new Error(error)
+        console.log(newError)
+        PageError()
+    }
+}
