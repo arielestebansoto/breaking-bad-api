@@ -6,9 +6,8 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   overflow-y: hidden;
-  /* background-color: green; */
 }
-#app {
+#characters-container {
   inline-size: 100%;
   max-block-size: 75vh;
   overflow-y: scroll;
@@ -38,6 +37,7 @@ body {
   top: 0;
   z-index: -100;
 }
+
 /* SCROOLL BAR */
 /* width */
 ::-webkit-scrollbar {
